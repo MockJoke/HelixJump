@@ -1,23 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : MonoBehaviour 
+{
     public static GameManager singletonGM;        //this object is only available once in whole project, so only one instance of game manager 
     public int best;
     public int score;
     public int currentStage = 0;
     
-
-    private void Awake()
+    void Awake()
     {
-        if (singletonGM == null)
+        if(singletonGM == null)
             singletonGM = this;
-        else if (singletonGM != this)
+        else if(singletonGM != this)
             Destroy(gameObject);
 
-        best = PlayerPrefs.GetInt("Highscore");         //load the saved highscore
+        best = PlayerPrefs.GetInt("Highscore");
     }
 
     public void NextLevel()
@@ -40,12 +37,10 @@ public class GameManager : MonoBehaviour {
     {
         score += scoreToAdd;
 
-        if (score > best)
+        if(score > best)
         {
             PlayerPrefs.SetInt("Highscore", score);
             best = score;
         }
     }
-
-
 }

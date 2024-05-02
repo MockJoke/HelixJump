@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour {
-
-    public BallController target;
+public class CameraController : MonoBehaviour 
+{
+    [SerializeField] private BallController target;
     private float offset;       //keep initial distance between cam and ball
 
-    private void Awake()        //just little earlier than start method 
+    void Awake()
     {
+        if(target == null)
+            target = FindObjectOfType<BallController>();
+        
         offset = transform.position.y - target.transform.position.y;
     }
 
-    void Update ()          //once per frame 
+    void Update() 
     {             
         //move camera smoothly to target height (yTargetPos)
         Vector3 curPos = transform.position;        //get the pos of cam

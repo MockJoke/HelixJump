@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Score : MonoBehaviour {
-
-    [SerializeField] private Text txtScore;
-    [SerializeField] private Text txtBest;
+public class Score : MonoBehaviour 
+{
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI bestScoreText;
 
     void Update()
     {
-        txtBest.text = "Best: " + GameManager.singletonGM.best;
-        txtScore.text = "Score: " + GameManager.singletonGM.score;
+        bestScoreText.text = "Best: " + GameManager.singletonGM.best;
+        scoreText.text = "Score: " + GameManager.singletonGM.score;
     }
 }

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PassCheck : MonoBehaviour {
-
+public class PassCheck : MonoBehaviour 
+{
     private void OnTriggerEnter(Collider other)     
     {
         GameManager.singletonGM.AddScore(2);        //add 2 points whenever ball passes through one disk level

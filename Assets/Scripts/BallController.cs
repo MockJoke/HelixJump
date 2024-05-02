@@ -1,32 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class BallController : MonoBehaviour {
-
-    public Rigidbody rb;        //ball
-    public float impulseForce = 5f;
+public class BallController : MonoBehaviour 
+{
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float impulseForce = 5f;
 
     private Vector3 startPos;
-    public int perfectPass = 0;
+    [HideInInspector] public int perfectPass = 0;
     private bool ignoreNextCollision;
     public bool isSuperSpeedActive;
 
-    private void Awake()
+    void Awake()
     {
+        if(rb == null)
+            rb = GetComponent<Rigidbody>();
+        
         startPos = transform.position;
     }
-
-
-
+    
     private void OnCollisionEnter(Collision CollidedObj)
     {
-        if (ignoreNextCollision)
+        if(ignoreNextCollision)
             return;
 
-        if (isSuperSpeedActive)
+        if(isSuperSpeedActive)
         {
-            if (!CollidedObj.transform.GetComponent<Goal>())
+            if(!CollidedObj.transform.GetComponent<Goal>())
             {
                 /*foreach (Transform t in other.transform.parent)
                 {
@@ -37,7 +36,6 @@ public class BallController : MonoBehaviour {
                     Debug.Log("exploding - exploding - exploding - exploding");
                 }*/
                 Destroy(CollidedObj.transform.parent.gameObject);           //destroying parent because the ball will hit a part so we dont want to destroy only a part, we want to destroy the whole stage 
-
             }
 
         }
@@ -46,18 +44,17 @@ public class BallController : MonoBehaviour {
         {   
             //adding reset level functionality via death part --> initialized when deathpart gets hit 
             DeathPart deathPart = CollidedObj.transform.GetComponent<DeathPart>();
-            if (deathPart)
+            
+            if(deathPart)
                 deathPart.HittedDeathPart();
         }
 
         rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
         rb.AddForce(Vector3.up * impulseForce, ForceMode.Impulse);      //pushes the ball up
 
-
-
         //safety check
         ignoreNextCollision = true;
-        Invoke("AllowCollision", .2f);      //not to allow 2 forces to act within a short period of time
+        Invoke(nameof(AllowCollision), .2f);      //not to allow 2 forces to act within a short period of time
 
         //deactivating super speed
         perfectPass = 0;
@@ -67,11 +64,11 @@ public class BallController : MonoBehaviour {
     private void Update()
     {
         //activate super speed
-        if (perfectPass >= 3 && !isSuperSpeedActive)
+        if(perfectPass >= 3 && !isSuperSpeedActive)
         {
             isSuperSpeedActive = true;
             rb.AddForce(Vector3.down * 10, ForceMode.Impulse);          //adding extra force to make ball move faster to get super speed
-         }
+        }
     }
 
     public void ResetBall()     //to set the pos of ball when level gets restarted
@@ -83,6 +80,4 @@ public class BallController : MonoBehaviour {
     {
         ignoreNextCollision = false;
     }
-
-
 }

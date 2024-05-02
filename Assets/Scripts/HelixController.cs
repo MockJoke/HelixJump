@@ -1,32 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class HelixController : MonoBehaviour {
-
+public class HelixController : MonoBehaviour 
+{
     private Vector3 startRotation;
     private Vector2 lastTapPos;
     private float helixDistance;        
     
-    public Transform topPlatform;       //top platform
-    public Transform goalPlatform;      //bottom goal platform
-    public GameObject helixLevelPrefab;
+    [SerializeField] private Transform topPlatform;       //top platform
+    [SerializeField] private Transform goalPlatform;      //bottom goal platform
+    [SerializeField] private GameObject helixLevelPrefab;
 
     public List<Stage> allStages = new List<Stage>();       //all stages    
     private List<GameObject> spawnedLevels = new List<GameObject>();        //all levels, every single level is a GameObject itself 
 
-    // Use this for initialization
-    void Awake () {
+    void Awake() 
+    {
         startRotation = transform.localEulerAngles;
         helixDistance = topPlatform.localPosition.y - (goalPlatform.localPosition.y + .1f);         //distance bw top and goal platform     
         LoadStage(0);
     }
 	
-	// Update is called once per frame
-	void Update () {
-
+	void Update() 
+    {
         //spin helix by using click (or touch) and drag
-        if (Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0))
         {
             Vector2 curTapPos = Input.mousePosition;
 
@@ -39,7 +37,7 @@ public class HelixController : MonoBehaviour {
             transform.Rotate(Vector3.up * delta);       //how much to rotate 
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0))
         {
             lastTapPos = Vector2.zero;
         }
@@ -50,7 +48,7 @@ public class HelixController : MonoBehaviour {
         //get the correct stage
         Stage stage = allStages[Mathf.Clamp(stageNumber, 0, allStages.Count - 1)];      
 
-        if (stage == null)
+        if(stage == null)
         {
             Debug.LogError("No stage " + stageNumber + " found in allStages list (HelixController). All stages assigned in list?");
             return;
@@ -69,14 +67,16 @@ public class HelixController : MonoBehaviour {
         transform.localEulerAngles = startRotation;
 
         //destroy the old levels if there are some
-        foreach (GameObject GameObj in spawnedLevels)           //spawnedLevels list 
+        foreach(GameObject GameObj in spawnedLevels)
+        {
             Destroy(GameObj);
+        }
 
         //create the new levels
         float levelDistance = helixDistance / stage.levels.Count;       //how far apart each platform should be
         float spawnPosY = topPlatform.localPosition.y;              //for pos of level, initially set to top platform and then will substract from it
 
-        for (int i = 0; i < stage.levels.Count; i++)
+        for(int i = 0; i < stage.levels.Count; i++)
         {
             spawnPosY -= levelDistance;         //substracting distance bw two levels to get the pos for next level
 
@@ -91,9 +91,10 @@ public class HelixController : MonoBehaviour {
 
             Debug.Log("Should disable " + partsToDisable);
 
-            while (disabledParts.Count < partsToDisable)            
+            while(disabledParts.Count < partsToDisable)            
             {
                 GameObject randomPart = level.transform.GetChild(Random.Range(0, level.transform.childCount)).gameObject;           //to randomise the disabled parts
+                
                 if (!disabledParts.Contains(randomPart))
                 {
                     randomPart.SetActive(false);
@@ -105,11 +106,11 @@ public class HelixController : MonoBehaviour {
             //mark parts as death parts
             List<GameObject> leftParts = new List<GameObject>();            //list of death parts
 
-            foreach (Transform t in level.transform)                //go through position of evry single level
+            foreach(Transform t in level.transform)                //go through position of evry single level
             {
                 t.GetComponent<Renderer>().material.color = allStages[stageNumber].stageLevelPartColor;             //set color of part
 
-                if (t.gameObject.activeInHierarchy)         
+                if(t.gameObject.activeInHierarchy)         
                     leftParts.Add(t.gameObject);            //active parts are added in left parts list
             }
 
@@ -131,8 +132,6 @@ public class HelixController : MonoBehaviour {
                     Debug.Log("Set death part");
                 }
             }
-
-
         }
     }
-    }
+}

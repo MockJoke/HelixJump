@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;       //requiered for serializable
+using System;
 
 [Serializable]
 public class Level
@@ -14,7 +13,8 @@ public class Level
 }
 
 [CreateAssetMenu(fileName = "New Stage")]
-public class Stage : ScriptableObject {         //scriptable object
+public class Stage : ScriptableObject 
+{
     public Color stageBackgroundColor = Color.white;
     public Color stageLevelPartColor = Color.white;
     public Color HelixColor = Color.white; 
