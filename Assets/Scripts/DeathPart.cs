@@ -2,13 +2,13 @@
 
 public class DeathPart : MonoBehaviour 
 {
-    void OnEnable()     //as the object gets enabled
+    void OnEnable()
     {
         GetComponent<Renderer>().material.color = Color.red;        //colour of death part changed by renderer
     }
 
-    public void HittedDeathPart()
+    public void HitDeathPart()
     {
-        GameManager.singletonGM.RestartLevel();     //as the ball hits death part, level restarted
+        GameManager.Instance.RestartLevel();     //as the ball hits death part, level restarted
     }
 }

@@ -7,17 +7,33 @@ public class HelixController : MonoBehaviour
     private Vector2 lastTapPos;
     private float helixDistance;        
     
-    [SerializeField] private Transform topPlatform;       //top platform
-    [SerializeField] private Transform goalPlatform;      //bottom goal platform
+    [SerializeField] private Transform startPlatform;
+    [SerializeField] private Transform endPlatform;
     [SerializeField] private GameObject helixLevelPrefab;
 
     public List<Stage> allStages = new List<Stage>();       //all stages    
-    private List<GameObject> spawnedLevels = new List<GameObject>();        //all levels, every single level is a GameObject itself 
+    private List<GameObject> spawnedLevels = new List<GameObject>();        //all levels, every single level is a GameObject itself
+
+    [Header("Components")] 
+    [SerializeField] private Renderer helixRenderer;
+    [SerializeField] private Camera mainCamera;
+
+    [Space] 
+    [SerializeField] private Renderer ballRenderer;
 
     void Awake() 
     {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
+        if (helixRenderer == null)
+            helixRenderer = GetComponent<Renderer>();
+
+        if (ballRenderer == null)
+            ballRenderer = FindObjectOfType<BallController>().GetComponent<Renderer>();
+            
         startRotation = transform.localEulerAngles;
-        helixDistance = topPlatform.localPosition.y - (goalPlatform.localPosition.y + .1f);         //distance bw top and goal platform     
+        helixDistance = startPlatform.localPosition.y - (endPlatform.localPosition.y + .1f);         //distance bw top and goal platform     
         LoadStage(0);
     }
 	
@@ -55,13 +71,13 @@ public class HelixController : MonoBehaviour
         }
 
         //set the new background color in new stage
-        Camera.main.backgroundColor = allStages[stageNumber].stageBackgroundColor;
+        mainCamera.backgroundColor = allStages[stageNumber].stageBackgroundColor;
 
         //set the ball color in new stage
-        FindObjectOfType<BallController>().GetComponent<Renderer>().material.color = allStages[stageNumber].stageBallColor;
+        ballRenderer.material.color = allStages[stageNumber].stageBallColor;
 
         //set the helix color in new stage
-        FindObjectOfType<HelixController>().GetComponent<Renderer>().material.color = allStages[stageNumber].HelixColor;
+        helixRenderer.material.color = allStages[stageNumber].HelixColor;
 
         //reset the helix rotation
         transform.localEulerAngles = startRotation;
@@ -74,11 +90,11 @@ public class HelixController : MonoBehaviour
 
         //create the new levels
         float levelDistance = helixDistance / stage.levels.Count;       //how far apart each platform should be
-        float spawnPosY = topPlatform.localPosition.y;              //for pos of level, initially set to top platform and then will substract from it
+        float spawnPosY = startPlatform.localPosition.y;                //for pos of level, initially set to top platform and then will substract from it
 
         for(int i = 0; i < stage.levels.Count; i++)
         {
-            spawnPosY -= levelDistance;         //substracting distance bw two levels to get the pos for next level
+            spawnPosY -= levelDistance;         //subtracting distance bw two levels to get the pos for next level
 
             GameObject level = Instantiate(helixLevelPrefab, transform);        //instantiating a level 
             Debug.Log("Levels Spawned");

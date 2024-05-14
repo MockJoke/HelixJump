@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Score : MonoBehaviour 
 {
@@ -9,7 +8,7 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        bestScoreText.text = "Best: " + GameManager.singletonGM.best;
-        scoreText.text = "Score: " + GameManager.singletonGM.score;
+        bestScoreText.text = "Best: " + GameManager.Instance.best;
+        scoreText.text = "Score: " + GameManager.Instance.score;
     }
 }

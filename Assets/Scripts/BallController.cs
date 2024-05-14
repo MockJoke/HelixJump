@@ -46,7 +46,7 @@ public class BallController : MonoBehaviour
             DeathPart deathPart = CollidedObj.transform.GetComponent<DeathPart>();
             
             if(deathPart)
-                deathPart.HittedDeathPart();
+                deathPart.HitDeathPart();
         }
 
         rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
