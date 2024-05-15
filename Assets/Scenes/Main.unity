@@ -220,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 51372412}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 7, z: -6.5}
+  m_LocalPosition: {x: 0, y: 6.45, z: -6.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -512,14 +512,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa73f32ebce1194d8a68547f5d0d0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlatform: {fileID: 0}
-  endPlatform: {fileID: 0}
-  helixLevelPrefab: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
+  startPlatform: {fileID: 755309005}
+  endPlatform: {fileID: 1162338219}
+  helixRingPrefab: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
     type: 3}
-  allStages:
-  - {fileID: 11400000, guid: 051d9bbef9606b3418d69bc52c152137, type: 2}
-  - {fileID: 11400000, guid: 8c3d332a3793f5448957081a3bf59b51, type: 2}
-  - {fileID: 11400000, guid: c6077ec5e35e79d4ca7a9e29549a0459, type: 2}
+  levelData: {fileID: 11400000, guid: f11669d8d1b293346a8c19202710625b, type: 2}
   helixRenderer: {fileID: 350226348}
   mainCamera: {fileID: 51372415}
   ballRenderer: {fileID: 220051514}
@@ -651,7 +648,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
       propertyPath: m_Name
-      value: HelixStartDisk
+      value: HelixStartRing
       objectReference: {fileID: 0}
     - target: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
       propertyPath: m_IsActive
@@ -1116,7 +1113,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1448277556501934, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
       propertyPath: m_Name
-      value: HelixGoalDisk
+      value: HelixGoalRing
       objectReference: {fileID: 0}
     - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
       propertyPath: m_LocalPosition.x
