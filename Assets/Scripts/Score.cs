@@ -8,7 +8,7 @@ public class Score : MonoBehaviour
 
     void Update()
     {
-        bestScoreText.text = "Best: " + GameManager.Instance.best;
-        scoreText.text = "Score: " + GameManager.Instance.score;
+        bestScoreText.text = "Best: " + GameManager.Instance.HighScore;
+        scoreText.text = "Score: " + GameManager.Instance.Score;
     }
 }

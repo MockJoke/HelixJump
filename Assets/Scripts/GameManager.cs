@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     
     private int currentStage = 0;
     
-    public int best { get; private set; }
-    public int score { get; private set; }
+    public int HighScore { get; private set; }
+    public int Score { get; private set; }
     
     void Awake()
     {
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         if (ballController == null)
             ballController = FindObjectOfType<BallController>();
         
-        best = PlayerPrefs.GetInt("HighScore", 0);
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
     public void NextLevel()
@@ -45,19 +45,19 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Restarting Level");
 
-        Instance.score = 0;
+        Instance.Score = 0;
         ballController.ResetBall();
         helixController.LoadStage(currentStage);
     }
 
     public void AddScore(int scoreToAdd)
     {
-        score += scoreToAdd;
+        Score += scoreToAdd;
 
-        if (score > best)
+        if (Score > HighScore)
         {
-            best = score;
-            PlayerPrefs.SetInt("HighScore", score);
+            HighScore = Score;
+            PlayerPrefs.SetInt("HighScore", Score);
         }
     }
 }
