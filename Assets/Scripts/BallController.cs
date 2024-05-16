@@ -12,7 +12,7 @@ public class BallController : MonoBehaviour
 
     void Awake()
     {
-        if(rb == null)
+        if (rb == null)
             rb = GetComponent<Rigidbody>();
         
         startPos = transform.position;
@@ -20,12 +20,12 @@ public class BallController : MonoBehaviour
     
     private void OnCollisionEnter(Collision CollidedObj)
     {
-        if(ignoreNextCollision)
+        if (ignoreNextCollision)
             return;
 
-        if(isSuperSpeedActive)
+        if (isSuperSpeedActive)
         {
-            if(!CollidedObj.transform.GetComponent<Goal>())
+            if (!CollidedObj.transform.GetComponent<GoalSection>())
             {
                 /*foreach (Transform t in other.transform.parent)
                 {
@@ -43,10 +43,10 @@ public class BallController : MonoBehaviour
         else
         {   
             //adding reset level functionality via death part --> initialized when deathpart gets hit 
-            DeathPart deathPart = CollidedObj.transform.GetComponent<DeathPart>();
+            DeathSection deathSection = CollidedObj.transform.GetComponent<DeathSection>();
             
-            if(deathPart)
-                deathPart.HitDeathPart();
+            if (deathSection)
+                deathSection.HitDeathPart();
         }
 
         rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
@@ -64,7 +64,7 @@ public class BallController : MonoBehaviour
     private void Update()
     {
         //activate super speed
-        if(perfectPass >= 3 && !isSuperSpeedActive)
+        if (perfectPass >= 3 && !isSuperSpeedActive)
         {
             isSuperSpeedActive = true;
             rb.AddForce(Vector3.down * 10, ForceMode.Impulse);          //adding extra force to make ball move faster to get super speed
