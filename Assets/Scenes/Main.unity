@@ -496,8 +496,8 @@ Transform:
   m_LocalScale: {x: 2, y: 20, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 755309005}
-  - {fileID: 1162338219}
+  - {fileID: 4713099429497722}
+  - {fileID: 4713097680620828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &350226351
@@ -512,9 +512,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa73f32ebce1194d8a68547f5d0d0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPlatform: {fileID: 755309005}
-  endPlatform: {fileID: 1162338219}
-  helixRingPrefab: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
+  startRingTransform: {fileID: 4713099429497722}
+  endRingTransform: {fileID: 4713097680620828}
+  helixRingPrefab: {fileID: 8852539503320352703, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
     type: 3}
   levelData: {fileID: 11400000, guid: f11669d8d1b293346a8c19202710625b, type: 2}
   helixRenderer: {fileID: 350226348}
@@ -638,78 +638,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1022105716}
   bestScoreText: {fileID: 1760050193}
---- !u!1001 &755309004
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 350226350}
-    m_Modifications:
-    - target: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_Name
-      value: HelixStartRing
-      objectReference: {fileID: 0}
-    - target: {fileID: 1448277556501934, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114069743510218006, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
-        type: 3}
-      propertyPath: ballController
-      value: 
-      objectReference: {fileID: 220051518}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb, type: 3}
---- !u!4 &755309005 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4713098808939190, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 755309004}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &770366937
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,74 +1031,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1162338218
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 350226350}
-    m_Modifications:
-    - target: {fileID: 1448277556501934, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_Name
-      value: HelixGoalRing
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114069743510218006, guid: d95056d8a105d2449944e250fabe80fa,
-        type: 3}
-      propertyPath: ballController
-      value: 
-      objectReference: {fileID: 220051518}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d95056d8a105d2449944e250fabe80fa, type: 3}
---- !u!4 &1162338219 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4713098808939190, guid: d95056d8a105d2449944e250fabe80fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1162338218}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1314646553
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1259,68 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1448276394852868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4713097680620828}
+  m_Layer: 0
+  m_Name: HelixGoalRingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!1 &1448277070283874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4713099429497722}
+  m_Layer: 0
+  m_Name: HelixStartRingPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4713097680620828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448276394852868}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.05, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 350226350}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4713099429497722
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448277070283874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.05, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 350226350}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

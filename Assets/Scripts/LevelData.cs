@@ -12,15 +12,17 @@ public class LevelData : ScriptableObject
 public class Level
 {
     public Color BgColor = Color.white;
-    public Color RingColor = Color.white;
-    public Color PillarColor = Color.white;
     public Color BallColor = Color.white;
-    public List<Ring> rings = new List<Ring>();
+    public Color PillarColor = Color.white;
+    public Color RingColor = Color.white;
+    public Color DeathSectionColor = Color.white;
+    public List<RingData> rings = new List<RingData>();
 }
 
 [Serializable]
-public struct Ring
+public struct RingData
 {
+    // max range - 11 because each ring contains 12 sections but always need 1 section empty for pass through
     [Range(1,11)]
     public int totalSections;      
 
