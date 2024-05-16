@@ -3,9 +3,7 @@ using UnityEngine;
 public class Section : MonoBehaviour
 {
     [SerializeField] private MeshRenderer sectionRenderer;
-
-    private bool isDeadly = false;
-    private bool isGoal = false;
+    [SerializeField] private SectionType sectionType;
     
     private void Awake()
     {
@@ -13,18 +11,22 @@ public class Section : MonoBehaviour
             sectionRenderer = GetComponent<MeshRenderer>();
     }
 
-    public void SetColor(Color color)
+    public void SetupSection(SectionType type, Color color)
     {
+        sectionType = type;
         sectionRenderer.material.color = color;
+        
+        if (sectionType == SectionType.empty)
+        {
+            gameObject.SetActive(false);
+        }
     }
+}
 
-    public void SetDeadlySection()
-    {
-        isDeadly = true;
-    }
-    
-    public void SetGoalSection()
-    {
-        isGoal = true;
-    }
+public enum SectionType
+{
+    empty = -1,
+    normal = 0,
+    danger = 1,
+    goal = 2
 }

@@ -13,65 +13,64 @@ public class Ring : MonoBehaviour
 
     public void SetupAsStartRing(Color ringColor)
     {
-        GameObject randomPart = transform.GetChild(Random.Range(0, sections.Length)).gameObject;           //to randomise the disabled parts
-        randomPart.SetActive(false);
-
         foreach (Section section in sections)
         {
-            section.SetColor(ringColor);
+            section.SetupSection(SectionType.normal, ringColor);
         }
+        
+        Section randomPart = sections[Random.Range(0, sections.Length)];
+        randomPart.SetupSection(SectionType.empty, ringColor);
     }
 
     public void SetupAsEndRing(Color ringColor)
     {
         foreach (Section section in sections)
         {
-            section.SetColor(ringColor);
+            section.SetupSection(SectionType.goal, ringColor);
             section.gameObject.AddComponent<GoalSection>();
         }
     }
     
-    public void SetupRing(RingData ringData, Color ringColor, Color deathSectionColor)
+    public void SetupRing(RingData ringData, Color normalSectionColor, Color dangerSectionColor)
     {
-        //disable some parts (depending on level setup)
-        int partsToDisable = 12 - ringData.totalSections;             //one ring consists of 12 sections 
-        List<GameObject> disabledParts = new List<GameObject>();            //list of disabled parts
+        int partsToDisable = 12 - ringData.totalSections; 
+        List<Section> emptySections = new List<Section>();
 
-        while (disabledParts.Count < partsToDisable)            
+        while (emptySections.Count < partsToDisable)            
         {
-            GameObject randomPart = transform.GetChild(Random.Range(0, sections.Length)).gameObject;           //to randomise the disabled parts
+            Section randEmptySection = sections[Random.Range(0, sections.Length)];
                 
-            if (!disabledParts.Contains(randomPart))
+            if (!emptySections.Contains(randEmptySection))
             {
-                randomPart.SetActive(false);
-                disabledParts.Add(randomPart);
+                randEmptySection.SetupSection(SectionType.empty, normalSectionColor);
+                emptySections.Add(randEmptySection);
             }
         }
 
-        //mark parts as death parts
-        List<Section> leftParts = new List<Section>();            //list of death parts
+        List<Section> normalSections = new List<Section>();
 
         foreach (Section section in sections)
         {
-            section.SetColor(ringColor);
-            
             if (section.gameObject.activeInHierarchy)
-                leftParts.Add(section);
+            {
+                section.SetupSection(SectionType.normal, normalSectionColor);
+                normalSections.Add(section);
+            }
         }
         
-        //creating death parts
-        List<Section> deathParts = new List<Section>();
+        List<Section> dangerSections = new List<Section>();
 
-        while (deathParts.Count < ringData.deathSections)
+        while (dangerSections.Count < ringData.dangerSections)
         {
-            Section randomPart = leftParts[(Random.Range(0, leftParts.Count))];          //to randomise the left parts
+            Section randDangerSection = normalSections[Random.Range(0, normalSections.Count)];
 
-            if (!deathParts.Contains(randomPart))
+            if (!dangerSections.Contains(randDangerSection))
             {
-                randomPart.gameObject.AddComponent<DeathSection>();        //adding DeathPart script to random part
-                randomPart.SetColor(deathSectionColor);
-                
-                deathParts.Add(randomPart);
+                randDangerSection.gameObject.AddComponent<DangerSection>();
+                randDangerSection.SetupSection(SectionType.danger, dangerSectionColor);
+
+                dangerSections.Add(randDangerSection);
+                normalSections.Remove(randDangerSection);
             }
         }
     }

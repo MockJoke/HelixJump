@@ -15,7 +15,7 @@ public class Level
     public Color BallColor = Color.white;
     public Color PillarColor = Color.white;
     public Color RingColor = Color.white;
-    public Color DeathSectionColor = Color.white;
+    public Color DangerSectionColor = Color.white;
     public List<RingData> rings = new List<RingData>();
 }
 
@@ -27,5 +27,5 @@ public struct RingData
     public int totalSections;      
 
     [Range(0, 11)]
-    public int deathSections;
+    public int dangerSections;
 }

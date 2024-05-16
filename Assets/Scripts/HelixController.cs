@@ -6,16 +6,18 @@ public class HelixController : MonoBehaviour
     [SerializeField] private Transform startRingTransform;
     [SerializeField] private Transform endRingTransform;
     [SerializeField] private Ring helixRingPrefab;
-
-    [SerializeField] private LevelData levelData; 
-    private readonly List<GameObject> spawnedRings = new List<GameObject>();
-
+    
     [Header("Components")] 
     [SerializeField] private Renderer helixRenderer;
     [SerializeField] private Camera mainCamera;
 
     [Space] 
     [SerializeField] private Renderer ballRenderer;
+    
+    [Space]
+    [SerializeField] private LevelData levelData; 
+    
+    private readonly List<GameObject> spawnedRings = new List<GameObject>();
     
     private Vector3 initRotation;
     private float pillarHeight;
@@ -61,7 +63,7 @@ public class HelixController : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             newTap = true;
-            lastTapPos = Vector2.zero;
+            // lastTapPos = Vector2.zero;
         }
     }
 
@@ -100,7 +102,7 @@ public class HelixController : MonoBehaviour
             ring.transform.localPosition = new Vector3(0, initSpawnPosY, 0);
             spawnedRings.Add(ring.gameObject);
             
-            ring.SetupRing(level.rings[i], levelData.levels[levelNumber].RingColor, levelData.levels[levelNumber].DeathSectionColor);
+            ring.SetupRing(level.rings[i], levelData.levels[levelNumber].RingColor, levelData.levels[levelNumber].DangerSectionColor);
         }
         
         Ring endRing = Instantiate(helixRingPrefab, transform); 

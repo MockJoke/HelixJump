@@ -17,25 +17,25 @@ MonoBehaviour:
     BallColor: {r: 1, g: 1, b: 1, a: 1}
     PillarColor: {r: 0, g: 1, b: 0.023376703, a: 1}
     RingColor: {r: 0.94708157, g: 1, b: 0, a: 1}
-    DeathSectionColor: {r: 1, g: 0, b: 0, a: 1}
+    DangerSectionColor: {r: 1, g: 0, b: 0, a: 1}
     rings:
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
     - totalSections: 11
-      deathSections: 1
+      dangerSections: 1
