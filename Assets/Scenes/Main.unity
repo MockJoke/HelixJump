@@ -389,7 +389,6 @@ MonoBehaviour:
   rb: {fileID: 220051517}
   impulseForce: 5
   perfectPass: 0
-  isSuperSpeedActive: 0
 --- !u!1 &350226346
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,10 +515,10 @@ MonoBehaviour:
   endRingTransform: {fileID: 4713097680620828}
   helixRingPrefab: {fileID: 8852539503320352703, guid: f0c9ad13dbd5c4b4dbd703af2bbab6fb,
     type: 3}
-  levelData: {fileID: 11400000, guid: f11669d8d1b293346a8c19202710625b, type: 2}
   helixRenderer: {fileID: 350226348}
   mainCamera: {fileID: 51372415}
   ballRenderer: {fileID: 220051514}
+  levelData: {fileID: 11400000, guid: f11669d8d1b293346a8c19202710625b, type: 2}
 --- !u!1 &748333057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,7 +1065,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
