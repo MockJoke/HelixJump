@@ -8,7 +8,7 @@ public class BallController : MonoBehaviour
     private Vector3 startPos;
     [HideInInspector] public int perfectPass = 0;
     private bool ignoreNextCollision;
-    public bool isSuperSpeedActive;
+    private bool isSuperSpeedActive;
 
     void Awake()
     {
@@ -18,7 +18,7 @@ public class BallController : MonoBehaviour
         startPos = transform.position;
     }
     
-    private void OnCollisionEnter(Collision CollidedObj)
+    void OnCollisionEnter(Collision CollidedObj)
     {
         if (ignoreNextCollision)
             return;
@@ -43,10 +43,10 @@ public class BallController : MonoBehaviour
         else
         {   
             //adding reset level functionality via death part --> initialized when deathpart gets hit 
-            DeathSection deathSection = CollidedObj.transform.GetComponent<DeathSection>();
+            DangerSection dangerSection = CollidedObj.transform.GetComponent<DangerSection>();
             
-            if (deathSection)
-                deathSection.HitDeathPart();
+            if (dangerSection)
+                dangerSection.OnHitDangerSection();
         }
 
         rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance

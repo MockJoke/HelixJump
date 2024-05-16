@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class DeathSection : MonoBehaviour 
+public class DangerSection : MonoBehaviour 
 {
-    public void HitDeathPart()
+    public void OnHitDangerSection()
     {
         GameManager.Instance.RestartLevel();     //as the ball hits death part, level restarted
     }

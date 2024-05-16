@@ -43,9 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()      //restart the current level/state
     {
-        Debug.Log("Restarting Level");
-
-        Instance.Score = 0;
+        Score = 0;
         ballController.ResetBall();
         helixController.LoadStage(currentStage);
     }
