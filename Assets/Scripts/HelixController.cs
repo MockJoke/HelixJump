@@ -13,6 +13,7 @@ public class HelixController : MonoBehaviour
 
     [Space] 
     [SerializeField] private Renderer ballRenderer;
+    [SerializeField] private TrailRenderer ballTrailRenderer;
     
     [Space]
     [SerializeField] private LevelData levelData; 
@@ -34,6 +35,9 @@ public class HelixController : MonoBehaviour
 
         if (ballRenderer == null)
             ballRenderer = FindObjectOfType<BallController>().GetComponent<Renderer>();
+
+        if (ballTrailRenderer == null)
+            ballTrailRenderer = ballRenderer.GetComponentInChildren<TrailRenderer>();
             
         initRotation = transform.localEulerAngles;
         pillarHeight = startRingTransform.localPosition.y - (endRingTransform.localPosition.y + .1f);         //distance bw top and goal platform
@@ -81,8 +85,9 @@ public class HelixController : MonoBehaviour
         Level level = levelData.levels[levelNumber];      
 
         mainCamera.backgroundColor = levelData.levels[levelNumber].BgColor;
-        ballRenderer.material.color = levelData.levels[levelNumber].BallColor;
         helixRenderer.material.color = levelData.levels[levelNumber].PillarColor;
+        ballRenderer.material.color = levelData.levels[levelNumber].BallColor;
+        ballTrailRenderer.materials[0].color = levelData.levels[levelNumber].BallColor;
         transform.localEulerAngles = initRotation;
         
         //create the new levels
@@ -92,7 +97,7 @@ public class HelixController : MonoBehaviour
         Ring startRing = Instantiate(helixRingPrefab, transform); 
         startRing.transform.localPosition = new Vector3(0, initSpawnPosY, 0);
         spawnedRings.Add(startRing.gameObject);
-        startRing.SetupAsStartRing(levelData.levels[levelNumber].RingColor);
+        startRing.SetupAsStartRing(levelData.levels[levelNumber].NormalSectionColor);
 
         for (int i = 0; i < level.rings.Count; i++)
         {
@@ -102,12 +107,12 @@ public class HelixController : MonoBehaviour
             ring.transform.localPosition = new Vector3(0, initSpawnPosY, 0);
             spawnedRings.Add(ring.gameObject);
             
-            ring.SetupRing(level.rings[i], levelData.levels[levelNumber].RingColor, levelData.levels[levelNumber].DangerSectionColor);
+            ring.SetupRing(level.rings[i], levelData.levels[levelNumber].NormalSectionColor, levelData.levels[levelNumber].DangerSectionColor);
         }
         
         Ring endRing = Instantiate(helixRingPrefab, transform); 
         endRing.transform.localPosition = new Vector3(0, endRingTransform.localPosition.y, 0);
         spawnedRings.Add(endRing.gameObject);
-        endRing.SetupAsEndRing(levelData.levels[levelNumber].RingColor);
+        endRing.SetupAsEndRing(levelData.levels[levelNumber].GoalSectionColor);
     }
 }

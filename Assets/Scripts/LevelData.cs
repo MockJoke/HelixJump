@@ -14,8 +14,9 @@ public class Level
     public Color BgColor = Color.white;
     public Color BallColor = Color.white;
     public Color PillarColor = Color.white;
-    public Color RingColor = Color.white;
+    public Color NormalSectionColor = Color.white;
     public Color DangerSectionColor = Color.white;
+    public Color GoalSectionColor = Color.white;
     public List<RingData> rings = new List<RingData>();
 }
 
