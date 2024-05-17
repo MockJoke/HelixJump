@@ -14,6 +14,7 @@ public class HelixController : MonoBehaviour
     [Space] 
     [SerializeField] private Renderer ballRenderer;
     [SerializeField] private TrailRenderer ballTrailRenderer;
+    [SerializeField] private GameObject splashPrefab;
     
     [Space]
     [SerializeField] private LevelData levelData; 
@@ -88,6 +89,7 @@ public class HelixController : MonoBehaviour
         helixRenderer.material.color = levelData.levels[levelNumber].PillarColor;
         ballRenderer.material.color = levelData.levels[levelNumber].BallColor;
         ballTrailRenderer.materials[0].color = levelData.levels[levelNumber].BallColor;
+        splashPrefab.GetComponent<Renderer>().sharedMaterial.color = levelData.levels[levelNumber].BallColor;
         transform.localEulerAngles = initRotation;
         
         //create the new levels

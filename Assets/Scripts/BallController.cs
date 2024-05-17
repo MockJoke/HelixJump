@@ -5,6 +5,9 @@ public class BallController : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float impulseForce = 5f;
 
+    [SerializeField] private GameObject splashPrefab;
+    [SerializeField] private float splashOffsetY = 0.19f;
+    
     private Vector3 startPos;
     [HideInInspector] public int perfectPass = 0;
     private bool ignoreNextCollision;
@@ -18,14 +21,16 @@ public class BallController : MonoBehaviour
         startPos = transform.position;
     }
     
-    void OnCollisionEnter(Collision CollidedObj)
+    void OnCollisionEnter(Collision collision)
     {
+        AddSplash(collision.transform);
+        
         if (ignoreNextCollision)
             return;
 
         if (isSuperSpeedActive)
         {
-            if (!CollidedObj.transform.GetComponent<GoalSection>())
+            if (!collision.transform.GetComponent<GoalSection>())
             {
                 /*foreach (Transform t in other.transform.parent)
                 {
@@ -35,15 +40,14 @@ public class BallController : MonoBehaviour
                     //Destroy(other.gameObject);
                     Debug.Log("exploding - exploding - exploding - exploding");
                 }*/
-                Destroy(CollidedObj.transform.parent.gameObject);           //destroying parent because the ball will hit a part so we dont want to destroy only a part, we want to destroy the whole stage 
+                Destroy(collision.transform.parent.gameObject);           //destroying parent because the ball will hit a part so we dont want to destroy only a part, we want to destroy the whole stage 
             }
-
         }
         //if super speed is not active and a death part gets hit -> restart game
         else
         {   
             //adding reset level functionality via death part --> initialized when deathpart gets hit 
-            DangerSection dangerSection = CollidedObj.transform.GetComponent<DangerSection>();
+            DangerSection dangerSection = collision.transform.GetComponent<DangerSection>();
             
             if (dangerSection)
                 dangerSection.OnHitDangerSection();
@@ -79,5 +83,13 @@ public class BallController : MonoBehaviour
     private void AllowCollision()
     {
         ignoreNextCollision = false;
+    }
+
+    private void AddSplash(Transform section)
+    {
+        GameObject splash = Instantiate(splashPrefab,
+                    new Vector3(transform.position.x, section.position.y + splashOffsetY, transform.position.z),
+                            transform.rotation, section);
+        splash.transform.localScale = Vector3.one * Random.Range(0.175f, 0.25f);
     }
 }
