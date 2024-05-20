@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")] 
     [SerializeField] private Start startMenu;
+    [SerializeField] private GameOver gameOverMenu;
     [Header("Controllers")]
     [SerializeField] private HelixController helixController;
     [SerializeField] private BallController ballController;
@@ -30,12 +31,15 @@ public class GameManager : MonoBehaviour
 
         if (startMenu == null)
             startMenu = FindObjectOfType<Start>();
+        
+        if (gameOverMenu == null)
+            gameOverMenu = FindObjectOfType<GameOver>();
         if (helixController == null)
             helixController = FindObjectOfType<HelixController>();
 
         if (ballController == null)
             ballController = FindObjectOfType<BallController>();
-        
+
         startMenu.OnStart += OnGameStart;
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
     }
@@ -56,6 +60,16 @@ public class GameManager : MonoBehaviour
         helixController.LoadLevel(currLevel);
     }
 
+    public void GameOver()
+    {
+        gameOverMenu.OnGameOver();
+    }
+
+    public void RestartLevel()
+    {
+        LoadLevel();
+    }
+    
     public void AddScore(int scoreToAdd)
     {
         Score += scoreToAdd;
