@@ -4,10 +4,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;        //this object is only available once in whole project, so only one instance of game manager 
 
+    [Header("UI")] 
+    [SerializeField] private Start startMenu;
+    [Header("Controllers")]
     [SerializeField] private HelixController helixController;
     [SerializeField] private BallController ballController;
     
-    private int currentStage = 0;
+    private int currLevel = 0;
     
     public int HighScore { get; private set; }
     public int Score { get; private set; }
@@ -25,27 +28,32 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        if (startMenu == null)
+            startMenu = FindObjectOfType<Start>();
         if (helixController == null)
             helixController = FindObjectOfType<HelixController>();
 
         if (ballController == null)
             ballController = FindObjectOfType<BallController>();
         
+        startMenu.OnStart += OnGameStart;
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
     }
 
-    public void NextLevel()
+    private void OnGameStart()
     {
-        currentStage++;
-        ballController.ResetBall();
-        helixController.LoadStage(currentStage);
+        LoadLevel();
     }
+    
 
     public void RestartLevel()      //restart the current level/state
     {
         Score = 0;
+    private void LoadLevel()
+    {
+        PassedRingCnt = 0;
         ballController.ResetBall();
-        helixController.LoadStage(currentStage);
+        helixController.LoadLevel(currLevel);
     }
 
     public void AddScore(int scoreToAdd)
