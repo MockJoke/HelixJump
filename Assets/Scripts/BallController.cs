@@ -3,8 +3,7 @@
 public class BallController : MonoBehaviour 
 {
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float impulseForce = 5f;
-
+    [SerializeField] private float bounceForce = 5f;
     [SerializeField] private GameObject splashPrefab;
     [SerializeField] private float splashOffsetY = 0.19f;
     
@@ -53,8 +52,10 @@ public class BallController : MonoBehaviour
                 dangerSection.OnHitDangerSection();
         }
 
-        rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
-        rb.AddForce(Vector3.up * impulseForce, ForceMode.Impulse);      //pushes the ball up
+        // rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
+        // rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);      //pushes the ball up
+
+        rb.velocity = new Vector3(rb.velocity.x, bounceForce * Time.deltaTime, rb.velocity.z);
 
         //safety check
         ignoreNextCollision = true;
