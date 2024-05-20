@@ -43,7 +43,7 @@ public class HelixController : MonoBehaviour
         initRotation = transform.localEulerAngles;
         pillarHeight = startRingTransform.localPosition.y - (endRingTransform.localPosition.y + .1f);         //distance bw top and goal platform
         
-        LoadStage(0);
+        // LoadLevel(0);
     }
 	
 	void Update() 
@@ -72,7 +72,7 @@ public class HelixController : MonoBehaviour
         }
     }
 
-    public void LoadStage(int levelNumber)
+    public void LoadLevel(int levelNumber)
     {
         //remove rings from prev level
         foreach (GameObject GameObj in spawnedRings)

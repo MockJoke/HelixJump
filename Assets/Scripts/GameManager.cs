@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [Header("UI")] 
     [SerializeField] private Start startMenu;
     [SerializeField] private GameOver gameOverMenu;
+    [SerializeField] private LevelWin levelWinMenu;
+    
     [Header("Controllers")]
     [SerializeField] private HelixController helixController;
     [SerializeField] private BallController ballController;
@@ -34,6 +36,10 @@ public class GameManager : MonoBehaviour
         
         if (gameOverMenu == null)
             gameOverMenu = FindObjectOfType<GameOver>();
+        
+        if (levelWinMenu == null)
+            levelWinMenu = FindObjectOfType<LevelWin>();
+        
         if (helixController == null)
             helixController = FindObjectOfType<HelixController>();
 
@@ -41,7 +47,9 @@ public class GameManager : MonoBehaviour
             ballController = FindObjectOfType<BallController>();
 
         startMenu.OnStart += OnGameStart;
+
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
+        currLevel = PlayerPrefs.GetInt("CurrLevel", 1);
     }
 
     private void OnGameStart()
@@ -49,10 +57,19 @@ public class GameManager : MonoBehaviour
         LoadLevel();
     }
     
-
-    public void RestartLevel()      //restart the current level/state
+    public void LevelWin()
     {
-        Score = 0;
+        levelWinMenu.OnLevelWin();
+    }
+
+    public void GoToNextLevel()
+    {
+        currLevel++;
+        PlayerPrefs.SetInt("CurrLevel", currLevel);
+        
+        LoadLevel();
+    }
+
     private void LoadLevel()
     {
         PassedRingCnt = 0;
@@ -80,4 +97,3 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", Score);
         }
     }
-}
