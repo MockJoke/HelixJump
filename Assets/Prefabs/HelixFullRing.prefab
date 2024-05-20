@@ -105,6 +105,8 @@ MonoBehaviour:
   - {fileID: 5351079960025197496}
   - {fileID: 7810126541752614375}
   - {fileID: 3479890515118934604}
+  explosionForce: 50
+  radius: 250
 --- !u!1001 &213920936557739867
 PrefabInstance:
   m_ObjectHideFlags: 0

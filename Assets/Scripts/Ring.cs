@@ -1,14 +1,52 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Ring : MonoBehaviour
 {
-    [SerializeField] private Section[] sections;
+    [SerializeField] private List<Section> sections;
 
+    [SerializeField] private float explosionForce = 100f;
+    [SerializeField] private float radius = 500f;
+    
+    private Transform ball;
+    
     void Awake()
     {
         if (sections == null)
-            sections = transform.GetComponentsInChildren<Section>();
+            sections = transform.GetComponentsInChildren<Section>().ToList();
+
+        if (ball == null)
+            ball = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    private void Update()
+    {
+        if (transform.position.y > ball.position.y + 0.1f)
+        {
+            foreach (Section section in sections)
+            {
+                Rigidbody rb = section.GetComponent<Rigidbody>();
+
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
+                
+                    rb.AddExplosionForce(explosionForce, transform.position, radius, 0f, ForceMode.Impulse);
+                }
+
+                section.transform.parent = null;
+                // sections.Remove(section);
+                
+                Destroy(section.gameObject, 2f);
+                
+                Destroy(this.gameObject, 3.5f);
+            }
+            
+            this.enabled = false;
+        }
     }
 
     public void SetupAsStartRing(Color ringColor)
@@ -18,7 +56,7 @@ public class Ring : MonoBehaviour
             section.SetupSection(SectionType.normal, ringColor);
         }
         
-        Section randomPart = sections[Random.Range(0, sections.Length)];
+        Section randomPart = sections[Random.Range(0, sections.Count)];
         randomPart.SetupSection(SectionType.empty, ringColor);
     }
 
@@ -38,7 +76,7 @@ public class Ring : MonoBehaviour
 
         while (emptySections.Count < partsToDisable)            
         {
-            Section randEmptySection = sections[Random.Range(0, sections.Length)];
+            Section randEmptySection = sections[Random.Range(0, sections.Count)];
                 
             if (!emptySections.Contains(randEmptySection))
             {
