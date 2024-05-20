@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     
     private int currLevel = 0;
     
+    public int PassedRingCnt { get; private set; }
+    
     public int HighScore { get; private set; }
     public int Score { get; private set; }
     
@@ -97,3 +99,9 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", Score);
         }
     }
+
+    public void IncreasePassedRingCnt()
+    {
+        PassedRingCnt++;
+    }
+}
