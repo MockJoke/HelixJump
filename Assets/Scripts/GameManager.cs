@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         startMenu.OnStart += OnGameStart;
 
         HighScore = PlayerPrefs.GetInt("HighScore", 0);
-        currLevel = PlayerPrefs.GetInt("CurrLevel", 1);
+        currLevel = PlayerPrefs.GetInt("CurrLevel", 0);
     }
 
     private void OnGameStart()
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     public void GoToNextLevel()
     {
         currLevel++;
+        currLevel = Mathf.Clamp(currLevel, 0, helixController.levelData.levels.Count - 1);
         PlayerPrefs.SetInt("CurrLevel", currLevel);
         
         LoadLevel();

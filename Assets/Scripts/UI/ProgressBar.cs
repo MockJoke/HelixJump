@@ -11,8 +11,8 @@ public class ProgressBar : MonoBehaviour
     
     private void Update()
     {
-        currLevel.text = $"{PlayerPrefs.GetInt("CurrLevel", 1)}";
-        nextLevel.text = $"{PlayerPrefs.GetInt("CurrLevel", 1) + 1}";
+        currLevel.text = $"{PlayerPrefs.GetInt("CurrLevel", 0) + 1}";
+        nextLevel.text = $"{PlayerPrefs.GetInt("CurrLevel", 0) + 2}";
 
         int progress = GameManager.Instance.PassedRingCnt * 100 / (levelData.levels[PlayerPrefs.GetInt("CurrLevel", 1)].rings.Count + 1);
         progressSlider.value = progress;

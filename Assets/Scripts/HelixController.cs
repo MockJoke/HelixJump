@@ -17,7 +17,7 @@ public class HelixController : MonoBehaviour
     [SerializeField] private GameObject splashPrefab;
     
     [Space]
-    [SerializeField] private LevelData levelData; 
+    public LevelData levelData; 
     
     private readonly List<GameObject> spawnedRings = new List<GameObject>();
     
