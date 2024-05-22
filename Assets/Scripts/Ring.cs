@@ -26,6 +26,8 @@ public class Ring : MonoBehaviour
         {
             GameManager.Instance.IncreasePassedRingCnt();
             
+            GameManager.Instance.AddScore(2);
+            
             foreach (Section section in sections)
             {
                 Rigidbody rb = section.GetComponent<Rigidbody>();
