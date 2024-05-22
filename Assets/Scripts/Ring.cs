@@ -5,7 +5,8 @@ using Random = UnityEngine.Random;
 public class Ring : MonoBehaviour
 {
     [SerializeField] private Section[] sections;
-
+    
+    [Header("Explosion Related Fields")]
     [SerializeField] private float explosionForce = 100f;
     [SerializeField] private float radius = 500f;
     

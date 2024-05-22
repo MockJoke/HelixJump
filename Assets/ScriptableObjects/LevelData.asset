@@ -52,21 +52,21 @@ MonoBehaviour:
     - totalSections: 11
       dangerSections: 1
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
+    - totalSections: 11
+      dangerSections: 2
+    - totalSections: 11
+      dangerSections: 2
     - totalSections: 11
       dangerSections: 1
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 2
     - totalSections: 11
-      dangerSections: 1
-    - totalSections: 11
-      dangerSections: 1
-    - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
   - BgColor: {r: 0.77254903, g: 0.77254903, b: 0.52156866, a: 1}
     BallColor: {r: 0.84313726, g: 0.43137255, b: 0.24313726, a: 1}
     PillarColor: {r: 0.6, g: 0.70980394, b: 0.30588236, a: 1}
@@ -77,20 +77,20 @@ MonoBehaviour:
     - totalSections: 11
       dangerSections: 1
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 2
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 2
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 4
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 4
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 3
     - totalSections: 11
-      dangerSections: 1
+      dangerSections: 4
