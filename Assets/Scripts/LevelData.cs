@@ -23,7 +23,7 @@ public class Level
 [Serializable]
 public struct RingData
 {
-    // max range - 11 because each ring contains 12 sections but always need 1 section empty for pass through
+    // max range : 11 because each ring contains 12 sections but always need 1 section empty for pass through
     [Range(1,11)]
     public int totalSections;      
 

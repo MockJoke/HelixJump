@@ -60,7 +60,7 @@ public class HelixController : MonoBehaviour
             float delta = lastTapPos.x - curTapPos.x;
             lastTapPos = curTapPos;
 
-            transform.Rotate(Vector3.up * delta);       //how much to rotate
+            transform.Rotate(Vector3.up * delta);
 
             newTap = false;
         }
@@ -94,13 +94,17 @@ public class HelixController : MonoBehaviour
         
         //create the new levels
         float distBwRings = pillarHeight / (level.rings.Count + 1);           // how far apart each ring should be
-        float initSpawnPosY = startRingTransform.localPosition.y;            // for pos of level, initially set to top platform and then will subtract from it
         
+        // for vertical-pos of level, initially set it to top platform and then gradually subtract from it
+        float initSpawnPosY = startRingTransform.localPosition.y;
+        
+        // Start Ring 
         Ring startRing = Instantiate(helixRingPrefab, transform); 
         startRing.transform.localPosition = new Vector3(0, initSpawnPosY, 0);
         spawnedRings.Add(startRing.gameObject);
         startRing.SetupAsStartRing(levelData.levels[levelNumber].NormalSectionColor);
-
+        
+        // Middle Rings
         for (int i = 0; i < level.rings.Count; i++)
         {
             initSpawnPosY -= distBwRings;         //subtracting distance bw two rings to get the pos for next ring
@@ -112,6 +116,7 @@ public class HelixController : MonoBehaviour
             ring.SetupRing(level.rings[i], levelData.levels[levelNumber].NormalSectionColor, levelData.levels[levelNumber].DangerSectionColor);
         }
         
+        // End Ring
         Ring endRing = Instantiate(helixRingPrefab, transform); 
         endRing.transform.localPosition = new Vector3(0, endRingTransform.localPosition.y, 0);
         spawnedRings.Add(endRing.gameObject);
