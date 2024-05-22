@@ -2,7 +2,7 @@
 
 public class GameManager : MonoBehaviour 
 {
-    public static GameManager Instance;        //this object is only available once in whole project, so only one instance of game manager 
+    public static GameManager Instance; 
 
     [Header("UI")] 
     [SerializeField] private Start startMenu;
@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel()
     {
+        Score = 0;
         PassedRingCnt = 0;
         ballController.ResetBall();
         helixController.LoadLevel(currLevel);
