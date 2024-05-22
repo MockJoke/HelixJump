@@ -12,6 +12,7 @@ public class LevelData : ScriptableObject
 public class Level
 {
     public Color BgColor = Color.white;
+    public Color BgVignetteColor = Color.white;
     public Color BallColor = Color.white;
     public Color PillarColor = Color.white;
     public Color NormalSectionColor = Color.white;

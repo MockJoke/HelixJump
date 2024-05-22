@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class HelixController : MonoBehaviour 
 {
@@ -9,17 +11,22 @@ public class HelixController : MonoBehaviour
     
     [Header("Components")] 
     [SerializeField] private Renderer helixRenderer;
-    [SerializeField] private Camera mainCamera;
 
     [Space] 
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Volume ppVolume;
     [SerializeField] private Renderer ballRenderer;
     [SerializeField] private TrailRenderer ballTrailRenderer;
+    
+    [Space]
     [SerializeField] private GameObject splashPrefab;
     
     [Space]
     public LevelData levelData; 
     
     private readonly List<GameObject> spawnedRings = new List<GameObject>();
+
+    private Vignette vignette;
     
     private Vector3 initRotation;
     private float pillarHeight;
@@ -39,7 +46,9 @@ public class HelixController : MonoBehaviour
 
         if (ballTrailRenderer == null)
             ballTrailRenderer = ballRenderer.GetComponentInChildren<TrailRenderer>();
-            
+
+        ppVolume.profile.TryGet(out vignette);
+        
         initRotation = transform.localEulerAngles;
         pillarHeight = startRingTransform.localPosition.y - (endRingTransform.localPosition.y + .1f);         //distance bw top and goal platform
         
@@ -86,6 +95,7 @@ public class HelixController : MonoBehaviour
         Level level = levelData.levels[levelNumber];      
 
         mainCamera.backgroundColor = levelData.levels[levelNumber].BgColor;
+        vignette.color.Override(levelData.levels[levelNumber].BgVignetteColor);
         helixRenderer.material.color = levelData.levels[levelNumber].PillarColor;
         ballRenderer.material.color = levelData.levels[levelNumber].BallColor;
         ballTrailRenderer.materials[0].color = levelData.levels[levelNumber].BallColor;
