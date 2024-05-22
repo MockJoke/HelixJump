@@ -2,15 +2,18 @@
 
 public class BallController : MonoBehaviour 
 {
+    [Header("Components")]
     [SerializeField] private Rigidbody rb;
+    
+    [Header("Movement Fields")]
     [SerializeField] private float bounceForce = 5f;
     [SerializeField] private GameObject splashPrefab;
     [SerializeField] private float splashOffsetY = 0.19f;
     
+    // [HideInInspector] public int perfectPass = 0;
     private Vector3 startPos;
-    [HideInInspector] public int perfectPass = 0;
-    private bool ignoreNextCollision;
-    private bool isSuperSpeedActive;
+    // private bool ignoreNextCollision;
+    // private bool isSuperSpeedActive;
 
     void Awake()
     {
@@ -23,34 +26,42 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         AddSplash(collision.transform);
-        
-        if (ignoreNextCollision)
-            return;
 
-        if (isSuperSpeedActive)
+        if (collision.transform.GetComponent<DangerSection>())
         {
-            if (!collision.transform.GetComponent<GoalSection>())
-            {
-                /*foreach (Transform t in other.transform.parent)
-                {
-                    gameObject.AddComponent<TriangleExplosion>();
-
-                    StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));
-                    //Destroy(other.gameObject);
-                    Debug.Log("exploding - exploding - exploding - exploding");
-                }*/
-                Destroy(collision.transform.parent.gameObject);           //destroying parent because the ball will hit a part so we dont want to destroy only a part, we want to destroy the whole stage 
-            }
-        }
-        //if super speed is not active and a death part gets hit -> restart game
-        else
-        {   
-            //adding reset level functionality via death part --> initialized when deathpart gets hit 
             DangerSection dangerSection = collision.transform.GetComponent<DangerSection>();
             
             if (dangerSection)
                 dangerSection.OnHitDangerSection();
         }
+        
+//         if (ignoreNextCollision)
+//             return;
+//
+//         if (isSuperSpeedActive)
+//         {
+//             if (!collision.transform.GetComponent<GoalSection>())
+//             {
+//                 /*foreach (Transform t in other.transform.parent)
+//                 {
+//                     gameObject.AddComponent<TriangleExplosion>();
+//
+//                     StartCoroutine(gameObject.GetComponent<TriangleExplosion>().SplitMesh(true));
+//                     //Destroy(other.gameObject);
+//                     Debug.Log("exploding - exploding - exploding - exploding");
+//                 }*/
+//                 Destroy(collision.transform.parent.gameObject);           //destroying parent because the ball will hit a part so we dont want to destroy only a part, we want to destroy the whole stage 
+//             }
+//         }
+//         //if super speed is not active and a death part gets hit -> restart game
+//         else
+//         {   
+//             //adding reset level functionality via death part --> initialized when deathpart gets hit 
+//             DangerSection dangerSection = collision.transform.GetComponent<DangerSection>();
+//             
+//             if (dangerSection)
+//                 dangerSection.OnHitDangerSection();
+//         }
 
         // rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
         // rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);      //pushes the ball up
@@ -58,33 +69,33 @@ public class BallController : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, bounceForce * Time.deltaTime, rb.velocity.z);
 
         //safety check
-        ignoreNextCollision = true;
-        Invoke(nameof(AllowCollision), .2f);      //not to allow 2 forces to act within a short period of time
+        // ignoreNextCollision = true;
+        // Invoke(nameof(AllowCollision), .2f);      //not to allow 2 forces to act within a short period of time
 
         //deactivating super speed
-        perfectPass = 0;
-        isSuperSpeedActive = false;
+        // perfectPass = 0;
+        // isSuperSpeedActive = false;
     }
 
     private void Update()
     {
         //activate super speed
-        if (perfectPass >= 3 && !isSuperSpeedActive)
-        {
-            isSuperSpeedActive = true;
-            rb.AddForce(Vector3.down * 10, ForceMode.Impulse);          //adding extra force to make ball move faster to get super speed
-        }
+        // if (perfectPass >= 3 && !isSuperSpeedActive)
+        // {
+        //     isSuperSpeedActive = true;
+        //     rb.AddForce(Vector3.down * 10, ForceMode.Impulse);          //adding extra force to make ball move faster to get super speed
+        // }
     }
 
-    public void ResetBall()     //to set the pos of ball when level gets restarted
+    public void ResetBall()
     {
         transform.position = startPos;
     }
 
-    private void AllowCollision()
-    {
-        ignoreNextCollision = false;
-    }
+    // private void AllowCollision()
+    // {
+    //     ignoreNextCollision = false;
+    // }
 
     private void AddSplash(Transform section)
     {
