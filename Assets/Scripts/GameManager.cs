@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     [Header("Controllers")]
     [SerializeField] private HelixController helixController;
     [SerializeField] private BallController ballController;
+
+    [Header("Debug")] 
+    [SerializeField] private int DebugLevelNo = 0;
     
     private int currLevel = 0;
     
@@ -105,5 +108,12 @@ public class GameManager : MonoBehaviour
     public void IncreasePassedRingCnt()
     {
         PassedRingCnt++;
+    }
+
+    [ContextMenu("Debug Level")]
+    private void DebugLevel()
+    {
+        currLevel = DebugLevelNo;
+        LoadLevel();
     }
 }
