@@ -28,9 +28,9 @@ public class HelixController : MonoBehaviour
 
     private Vignette vignette;
     
-    private Vector3 initRotation;
     private float pillarHeight;
-    private Vector2 lastTapPos;
+    private Vector3 initRotation = Vector3.zero;
+    private Vector3 lastTapPos = Vector3.zero;
     private bool newTap = true;
     
     void Awake() 
@@ -60,24 +60,23 @@ public class HelixController : MonoBehaviour
         //spin helix by using click (or touch) and drag
         if (Input.GetMouseButton(0))
         {
-            Vector2 curTapPos = Input.mousePosition;
+            Vector3 curTapPos = Input.mousePosition;
 
-            // if (lastTapPos == Vector2.zero)
+            // if (lastTapPos == Vector3.zero)
             if (newTap)    
                 lastTapPos = curTapPos;
 
             float delta = lastTapPos.x - curTapPos.x;
-            lastTapPos = curTapPos;
-
             transform.Rotate(Vector3.up * delta);
 
+            lastTapPos = curTapPos;
             newTap = false;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             newTap = true;
-            // lastTapPos = Vector2.zero;
+            // lastTapPos = Vector3.zero;
         }
     }
 
