@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour 
 {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     
     public int HighScore { get; private set; }
     public int Score { get; private set; }
+
+    public Action OnScoreChange;
     
     void Awake()
     {
@@ -57,6 +60,11 @@ public class GameManager : MonoBehaviour
         currLevel = PlayerPrefs.GetInt("CurrLevel", 0);
     }
 
+    void OnDestroy()
+    {
+        startMenu.OnStart -= OnGameStart;
+    }
+
     private void OnGameStart()
     {
         LoadLevel();
@@ -70,7 +78,8 @@ public class GameManager : MonoBehaviour
     public void GoToNextLevel()
     {
         currLevel++;
-        // clamping the level-no for safety in case it increase beyond the max level
+        
+        // Clamping the level-no for safety in case it increase beyond the max level
         currLevel = Mathf.Clamp(currLevel, 0, helixController.levelData.levels.Count - 1);
         PlayerPrefs.SetInt("CurrLevel", currLevel);
         
@@ -83,6 +92,7 @@ public class GameManager : MonoBehaviour
         PassedRingCnt = 0;
         ballController.ResetBall();
         helixController.LoadLevel(currLevel);
+        OnScoreChange?.Invoke();
     }
 
     public void GameOver()
@@ -104,6 +114,8 @@ public class GameManager : MonoBehaviour
             HighScore = Score;
             PlayerPrefs.SetInt("HighScore", Score);
         }
+        
+        OnScoreChange?.Invoke();
     }
 
     public void IncreasePassedRingCnt()

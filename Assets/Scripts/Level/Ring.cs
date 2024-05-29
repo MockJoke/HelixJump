@@ -26,7 +26,6 @@ public class Ring : MonoBehaviour
         if (transform.position.y > ball.position.y + 0.1f)
         {
             GameManager.Instance.IncreasePassedRingCnt();
-            
             GameManager.Instance.AddScore(2);
             
             foreach (Section section in sections)

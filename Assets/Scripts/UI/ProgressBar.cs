@@ -9,7 +9,17 @@ public class ProgressBar : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nextLevel;
     [SerializeField] private LevelData levelData;
     
-    private void Update()
+    void Start()
+    {
+        GameManager.Instance.OnScoreChange += UpdateProgress;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.OnScoreChange -= UpdateProgress;
+    }
+    
+    void UpdateProgress()
     {
         currLevel.text = $"{PlayerPrefs.GetInt("CurrLevel", 0) + 1}";
         nextLevel.text = $"{PlayerPrefs.GetInt("CurrLevel", 0) + 2}";
