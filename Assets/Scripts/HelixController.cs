@@ -57,7 +57,7 @@ public class HelixController : MonoBehaviour
 	
 	void Update() 
     {
-        //spin helix by using click (or touch) and drag
+        // spin helix by using click (or touch) & drag
         if (Input.GetMouseButton(0))
         {
             Vector3 curTapPos = Input.mousePosition;
@@ -72,7 +72,8 @@ public class HelixController : MonoBehaviour
             lastTapPos = curTapPos;
             newTap = false;
         }
-
+        
+        // set newTap once the input is released
         if (Input.GetMouseButtonUp(0))
         {
             newTap = true;
@@ -82,17 +83,16 @@ public class HelixController : MonoBehaviour
 
     public void LoadLevel(int levelNumber)
     {
-        //remove rings from prev level
+        // remove rings from prev level
         foreach (GameObject GameObj in spawnedRings)
         {
             Destroy(GameObj);
         }
         spawnedRings.Clear();
         
-        levelNumber = Mathf.Clamp(levelNumber, 0, levelData.levels.Count - 1);
+        // levelNumber = Mathf.Clamp(levelNumber, 0, levelData.levels.Count - 1);
+        Level level = levelData.levels[levelNumber];
         
-        Level level = levelData.levels[levelNumber];      
-
         mainCamera.backgroundColor = levelData.levels[levelNumber].BgColor;
         vignette.color.Override(levelData.levels[levelNumber].BgVignetteColor);
         helixRenderer.material.color = levelData.levels[levelNumber].PillarColor;

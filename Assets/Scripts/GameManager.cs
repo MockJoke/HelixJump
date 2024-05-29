@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
     public void GoToNextLevel()
     {
         currLevel++;
+        // clamping the level-no for safety in case it increase beyond the max level
         currLevel = Mathf.Clamp(currLevel, 0, helixController.levelData.levels.Count - 1);
         PlayerPrefs.SetInt("CurrLevel", currLevel);
         
