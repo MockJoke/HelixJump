@@ -130,19 +130,19 @@ public class Ring : MonoBehaviour
             }
         }
         
-        List<Section> flickeringSections = new List<Section>();
+        List<Section> blinkingSections = new List<Section>();
 
-        while (flickeringSections.Count < ringData.flickeringSections)
+        while (blinkingSections.Count < ringData.blinkingSections)
         {
-            Section randFlickeringSection = normalSections[Random.Range(0, normalSections.Count)];
+            Section randBlinkingSection = normalSections[Random.Range(0, normalSections.Count)];
 
-            if (!flickeringSections.Contains(randFlickeringSection))
+            if (!blinkingSections.Contains(randBlinkingSection))
             {
-                randFlickeringSection.gameObject.AddComponent<FlickerSection>();
-                randFlickeringSection.SetupSection(SectionType.flicker, normalSectionColor);
+                randBlinkingSection.gameObject.AddComponent<BlinkingSection>();
+                randBlinkingSection.SetupSection(SectionType.blink, normalSectionColor);
 
-                flickeringSections.Add(randFlickeringSection);
-                normalSections.Remove(randFlickeringSection);
+                blinkingSections.Add(randBlinkingSection);
+                normalSections.Remove(randBlinkingSection);
             }
         }
     }
