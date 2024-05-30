@@ -4,43 +4,19 @@ A 3D helix jump clone made using Unity game engine
 
 ## Demo
 
-<!-- https://user-images.githubusercontent.com/42877499/145179959-6a6fdc44-5c52-48f4-b62c-28922a4431ed.mp4 -->
-
 <div align="center">
-  <a href="https://youtu.be/3hF2YWFaSlg" target="_blank">
-    <img src="README-Resources/YT-Thumbnail.png" 
-    alt="HelixJump Gameplay" height="250" border="10" />
-  </a>
+  <img src="README-Resources/StartScreen.png" alt="Start-Screen" height="300px">
+  <img src="README-Resources/GamePlay1.png" alt="Gameplay" height="300px">
+  <img src="README-Resources/LevelFinish.png" alt="Gameplay" height="300px">
+  <br>
+  <img src="README-Resources/GamePlay2.png" alt="Gameplay" height="300px">
+  <img src="README-Resources/GameOver.png" alt="Gameplay" height="300px">
 </div>
 <div align="center">
   <a href="https://youtu.be/3hF2YWFaSlg" target="_blank">See Demo Video</a>
 </div>
 
 [//]: # ([Play on itch]&#40;https://mockjoke.itch.io/pixel-adventure&#41;)
-
-[//]: # (<p align="center">)
-
-[//]: # (    <img src="README-Resources/Start-Screen.png" alt="Start-Screen" width="300px">)
-
-[//]: # (    <img src="README-Resources/CharacterSelection-Menu.png" alt="CharacterSelection-Menu" width="300px">)
-
-[//]: # (</p>)
-
-[//]: # (<p align="center">)
-
-[//]: # (    <img src="README-Resources/Gameplay-Level2.png" alt="Gameplay-Level2" width="300px">)
-
-[//]: # (    <img src="README-Resources/Gameplay-Level3.png" alt="Gameplay-Level3" width="300px">)
-
-[//]: # (</p>)
-
-[//]: # (<p align="center">)
-
-[//]: # (    <img src="README-Resources/Gameplay-Level4.png" alt="Gameplay-Level4" width="300px">)
-
-[//]: # (    <img src="README-Resources/ExtraLives-Menu.png" alt="ExtraLives-Menu" width="300px">)
-
-[//]: # (</p>)
 
 ## Features
 
