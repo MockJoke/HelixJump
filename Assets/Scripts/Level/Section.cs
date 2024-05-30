@@ -21,6 +21,11 @@ public class Section : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public SectionType GetSectionType()
+    {
+        return sectionType;
+    }
 }
 
 public enum SectionType
@@ -28,5 +33,6 @@ public enum SectionType
     empty = -1,
     normal = 0,
     danger = 1,
-    goal = 2
+    goal = 2,
+    drop = 3
 }

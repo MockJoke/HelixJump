@@ -26,13 +26,32 @@ public class BallController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         AddSplash(collision.transform);
+        
+        rb.velocity = new Vector3(rb.velocity.x, bounceForce * Time.deltaTime, rb.velocity.z);
 
-        if (collision.transform.GetComponent<DangerSection>())
+        if (collision.transform.GetComponent<Section>())
         {
-            DangerSection dangerSection = collision.transform.GetComponent<DangerSection>();
-            
-            if (dangerSection)
-                dangerSection.OnHitDangerSection();
+            SectionType sectionType = collision.transform.GetComponent<Section>().GetSectionType();
+
+            switch (sectionType)
+            {
+                case SectionType.danger:
+                {
+                    DangerSection dangerSection = collision.transform.GetComponent<DangerSection>();
+                    if (dangerSection)
+                        dangerSection.OnHitDangerSection();
+                    
+                    break;
+                }
+                case SectionType.drop:
+                {
+                    DroppingSection dangerSection = collision.transform.GetComponent<DroppingSection>();
+                    if (dangerSection)
+                        dangerSection.Drop();
+                    
+                    break;
+                }
+            }
         }
         
 //         if (ignoreNextCollision)
@@ -65,8 +84,6 @@ public class BallController : MonoBehaviour
 
         // rb.velocity = Vector3.zero;     //remove velocity to not make the ball jump higher after falling done a greater distance
         // rb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);      //pushes the ball up
-
-        rb.velocity = new Vector3(rb.velocity.x, bounceForce * Time.deltaTime, rb.velocity.z);
 
         //safety check
         // ignoreNextCollision = true;

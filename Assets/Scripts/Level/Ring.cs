@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Ring : MonoBehaviour
 {
-    [SerializeField] private Section[] sections;
+    [SerializeField] private List<Section> sections;
     
     [Header("Explosion Related Fields")]
     [SerializeField] private float explosionForce = 100f;
@@ -15,7 +16,7 @@ public class Ring : MonoBehaviour
     void Awake()
     {
         if (sections == null)
-            sections = transform.GetComponentsInChildren<Section>();
+            sections = transform.GetComponentsInChildren<Section>().ToList();
 
         if (ball == null)
             ball = GameObject.FindGameObjectWithTag("Player").transform;
@@ -59,7 +60,7 @@ public class Ring : MonoBehaviour
             section.SetupSection(SectionType.normal, ringColor);
         }
         
-        Section randomPart = sections[Random.Range(0, sections.Length)];
+        Section randomPart = sections[Random.Range(0, sections.Count)];
         randomPart.SetupSection(SectionType.empty, ringColor);
     }
 
@@ -74,28 +75,26 @@ public class Ring : MonoBehaviour
     
     public void SetupRing(RingData ringData, Color normalSectionColor, Color dangerSectionColor)
     {
-        int partsToDisable = 12 - ringData.totalSections; 
+        List<Section> normalSections = new List<Section>();
+
+        foreach (Section section in sections)
+        {
+            section.SetupSection(SectionType.normal, normalSectionColor);
+            normalSections.Add(section);
+        }
+        
         List<Section> emptySections = new List<Section>();
 
-        while (emptySections.Count < partsToDisable)            
+        while (emptySections.Count < (12 - ringData.totalSections))            
         {
-            Section randEmptySection = sections[Random.Range(0, sections.Length)];
+            Section randEmptySection = normalSections[Random.Range(0, normalSections.Count)];
                 
             if (!emptySections.Contains(randEmptySection))
             {
                 randEmptySection.SetupSection(SectionType.empty, normalSectionColor);
                 emptySections.Add(randEmptySection);
-            }
-        }
-
-        List<Section> normalSections = new List<Section>();
-
-        foreach (Section section in sections)
-        {
-            if (section.gameObject.activeInHierarchy)
-            {
-                section.SetupSection(SectionType.normal, normalSectionColor);
-                normalSections.Add(section);
+                
+                normalSections.Remove(randEmptySection);
             }
         }
         
@@ -114,5 +113,26 @@ public class Ring : MonoBehaviour
                 normalSections.Remove(randDangerSection);
             }
         }
+        
+        List<Section> droppingSections = new List<Section>();
+
+        while (droppingSections.Count < ringData.droppingSections)
+        {
+            Section randDroppingSection = normalSections[Random.Range(0, normalSections.Count)];
+
+            if (!droppingSections.Contains(randDroppingSection))
+            {
+                randDroppingSection.gameObject.AddComponent<DroppingSection>();
+                randDroppingSection.SetupSection(SectionType.drop, normalSectionColor);
+
+                droppingSections.Add(randDroppingSection);
+                normalSections.Remove(randDroppingSection);
+            }
+        }
+    }
+
+    public void RemoveSection(Section section)
+    {
+        sections.Remove(section);
     }
 }

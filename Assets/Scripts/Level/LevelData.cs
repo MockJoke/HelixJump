@@ -44,4 +44,7 @@ public struct RingData
 
     [Range(0, 11)]
     public int dangerSections;
+    
+    [Range(0, 11)]
+    public int droppingSections;
 }
