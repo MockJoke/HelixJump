@@ -1,6 +1,6 @@
 # HelixJump
 
-A 3D helix jump clone made using Unity game engine
+A 3D helix jump game made using Unity game engine
 
 ## Demo
 
