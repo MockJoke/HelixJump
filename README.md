@@ -4,7 +4,16 @@ A 3D helix jump clone made using Unity game engine
 
 ## Demo
 
-https://user-images.githubusercontent.com/42877499/145179959-6a6fdc44-5c52-48f4-b62c-28922a4431ed.mp4
+<!-- https://user-images.githubusercontent.com/42877499/145179959-6a6fdc44-5c52-48f4-b62c-28922a4431ed.mp4 -->
+
+<p align="center">
+  <a href="https://youtu.be/3hF2YWFaSlg" target="_blank">
+    <img src="README-Resources/YT-Thumbnail.png" 
+    alt="HelixJump Gameplay" height="225" border="10" />
+  </a>
+</p>
+
+
 
 [//]: # ([Play on itch]&#40;https://mockjoke.itch.io/pixel-adventure&#41;)
 
