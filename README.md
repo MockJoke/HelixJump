@@ -36,6 +36,7 @@ https://user-images.githubusercontent.com/42877499/145179959-6a6fdc44-5c52-48f4-
 
 - Totally customisable levels with properties such as - </br>
   background colour, ball colour, pillar colour, section colour, number of rings, number of different type of sections etc.
+- Different types of tricky platforms such as dropping, blinking platform
 - UI/UX for game start, over, win, level progress, score etc.
 
 ### TODO:
