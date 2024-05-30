@@ -4,6 +4,8 @@ A 3D helix jump clone made using Unity game engine
 
 ## Demo
 
+[Download from itch.io](https://kharva.itch.io/helix-jump)
+
 <div align="center">
   <img src="README-Resources/StartScreen.png" alt="Start-Screen" height="300px">
   <img src="README-Resources/GamePlay1.png" alt="Gameplay" height="300px">
@@ -16,7 +18,6 @@ A 3D helix jump clone made using Unity game engine
   <a href="https://youtu.be/3hF2YWFaSlg" target="_blank">See Demo Video</a>
 </div>
 
-[//]: # ([Play on itch]&#40;https://mockjoke.itch.io/pixel-adventure&#41;)
 
 ## Features
 
