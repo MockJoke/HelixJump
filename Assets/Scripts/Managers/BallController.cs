@@ -53,8 +53,9 @@ public class BallController : MonoBehaviour
                 }
             }
         }
-        
-//         if (ignoreNextCollision)
+
+        #region unused code
+        //         if (ignoreNextCollision)
 //             return;
 //
 //         if (isSuperSpeedActive)
@@ -92,6 +93,7 @@ public class BallController : MonoBehaviour
         //deactivating super speed
         // perfectPass = 0;
         // isSuperSpeedActive = false;
+        #endregion
     }
 
     private void Update()
@@ -120,5 +122,7 @@ public class BallController : MonoBehaviour
                     new Vector3(transform.position.x, section.position.y + splashOffsetY, transform.position.z),
                             transform.rotation, section);
         splash.transform.localScale = Vector3.one * Random.Range(0.175f, 0.25f);
+        
+        Destroy(splash, 5f);
     }
 }
