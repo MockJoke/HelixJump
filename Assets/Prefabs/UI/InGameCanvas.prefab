@@ -607,7 +607,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 25, y: -85}
-  m_SizeDelta: {x: 250, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4646998816211110561
 CanvasRenderer:
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 0'
+  m_text: 'Score: 99'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0c2d5d8f6ef55a2439099b56f1f9bfad, type: 2}
   m_sharedMaterial: {fileID: 2858800452530337257, guid: 0c2d5d8f6ef55a2439099b56f1f9bfad,

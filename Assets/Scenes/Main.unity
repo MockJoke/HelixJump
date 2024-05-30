@@ -1067,11 +1067,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8500128500454015942, guid: 9a420c94c5201f84fab441f2e4080e16,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1163,11 +1158,6 @@ PrefabInstance:
       propertyPath: gameCanvas
       value: 
       objectReference: {fileID: 748333060}
-    - target: {fileID: 5622983481013686855, guid: 76c7666cd37fa484f9e68d331e717175,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5625768341370381452, guid: 76c7666cd37fa484f9e68d331e717175,
         type: 3}
       propertyPath: m_Pivot.x
