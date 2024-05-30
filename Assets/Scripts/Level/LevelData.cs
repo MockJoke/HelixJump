@@ -47,4 +47,7 @@ public struct RingData
     
     [Range(0, 11)]
     public int droppingSections;
+    
+    [Range(0, 11)]
+    public int flickeringSections;
 }

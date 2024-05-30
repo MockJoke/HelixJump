@@ -34,5 +34,6 @@ public enum SectionType
     normal = 0,
     danger = 1,
     goal = 2,
-    drop = 3
+    drop = 3,
+    flicker = 4
 }

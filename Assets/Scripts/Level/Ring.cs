@@ -129,6 +129,22 @@ public class Ring : MonoBehaviour
                 normalSections.Remove(randDroppingSection);
             }
         }
+        
+        List<Section> flickeringSections = new List<Section>();
+
+        while (flickeringSections.Count < ringData.flickeringSections)
+        {
+            Section randFlickeringSection = normalSections[Random.Range(0, normalSections.Count)];
+
+            if (!flickeringSections.Contains(randFlickeringSection))
+            {
+                randFlickeringSection.gameObject.AddComponent<FlickerSection>();
+                randFlickeringSection.SetupSection(SectionType.flicker, normalSectionColor);
+
+                flickeringSections.Add(randFlickeringSection);
+                normalSections.Remove(randFlickeringSection);
+            }
+        }
     }
 
     public void RemoveSection(Section section)
