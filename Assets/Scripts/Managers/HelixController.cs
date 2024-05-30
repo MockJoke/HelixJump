@@ -26,7 +26,7 @@ public class HelixController : MonoBehaviour
 
     private readonly List<GameObject> spawnedRings = new List<GameObject>();
 
-    private int currLevel = 0;
+    private int currLevel = -1;
     private Vignette vignette;
     private ColorPalette currColorPalette = null;
     private float pillarHeight;
@@ -97,7 +97,7 @@ public class HelixController : MonoBehaviour
         
         Level level = levelData.levels[levelNumber];
 
-        if (currLevel == 0)
+        if (currLevel == -1)
         {
             currLevel = levelNumber;
         }
@@ -111,6 +111,7 @@ public class HelixController : MonoBehaviour
             }
 
             currColorPalette = colors;
+            currLevel = levelNumber;
         }
 
         mainCamera.backgroundColor = currColorPalette.BgColor;
