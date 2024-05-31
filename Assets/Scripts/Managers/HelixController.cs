@@ -24,6 +24,9 @@ public class HelixController : MonoBehaviour
     [Space] 
     public LevelData levelData;
 
+    [Header("Debug Fields")] 
+    [SerializeField] private int colorPaletteIndex = 0;
+    
     private readonly List<GameObject> spawnedRings = new List<GameObject>();
 
     private int currLevel = -1;
@@ -156,5 +159,13 @@ public class HelixController : MonoBehaviour
     private ColorPalette GetRandomColorPalette()
     {
         return levelData.ColorPalettes[Random.Range(0, levelData.ColorPalettes.Count)];
+    }
+    
+    [ContextMenu("Set Color Palette")]
+    private void SetColorPalette()
+    {
+        currColorPalette = levelData.ColorPalettes[colorPaletteIndex];
+        
+        LoadLevel(currLevel);
     }
 }
