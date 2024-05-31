@@ -34,11 +34,9 @@ A 3D helix jump game made using Unity game engine
 
 ## Credits & Attributions
 
-[//]: # (#### Graphics:)
+#### Graphics:
 
-[//]: # (- https://pixelfrog-assets.itch.io/pixel-adventure-1)
-
-[//]: # (- https://pixelfrog-assets.itch.io/pixel-adventure-2)
+- https://www.color-hex.com/
 
 [//]: # ()
 [//]: # (#### Sounds:)
