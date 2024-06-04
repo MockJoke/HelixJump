@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Random = UnityEngine.Random;
 
 public class HelixController : MonoBehaviour
 {
@@ -25,13 +26,12 @@ public class HelixController : MonoBehaviour
     public LevelData levelData;
 
     [Header("Debug Fields")] 
-    [SerializeField] private int colorPaletteIndex = 0;
+    [SerializeField] private int currColorPaletteIndex = -1;
     
     private readonly List<GameObject> spawnedRings = new List<GameObject>();
 
     private int currLevel = -1;
     private Vignette vignette;
-    private ColorPalette currColorPalette = null;
     private float pillarHeight;
 
     private Vector3 initRotation = Vector3.zero;
@@ -95,8 +95,6 @@ public class HelixController : MonoBehaviour
         }
 
         spawnedRings.Clear();
-
-        // levelNumber = Mathf.Clamp(levelNumber, 0, levelData.levels.Count - 1);
         
         Level level = levelData.levels[levelNumber];
 
@@ -105,17 +103,22 @@ public class HelixController : MonoBehaviour
             currLevel = levelNumber;
         }
 
-        if (currColorPalette == null || currLevel != levelNumber)
+        if (currColorPaletteIndex == -1 || currLevel != levelNumber)
         {
-            ColorPalette colors = GetRandomColorPalette();
-            while (colors == currColorPalette)
+            int colorPaletteIdx = GetRandomColorPaletteIndex();
+            while (colorPaletteIdx == currColorPaletteIndex)
             {
-                colors = GetRandomColorPalette();
+                colorPaletteIdx = GetRandomColorPaletteIndex();
             }
 
-            currColorPalette = colors;
+            currColorPaletteIndex = colorPaletteIdx;
             currLevel = levelNumber;
         }
+        
+        // In case an out-of-bound index is given from the in-editor debug field
+        currColorPaletteIndex = Mathf.Clamp(currColorPaletteIndex, 0, levelData.ColorPalettes.Count - 1);
+        
+        ColorPalette currColorPalette = levelData.ColorPalettes[currColorPaletteIndex];
 
         mainCamera.backgroundColor = currColorPalette.BgColor;
         vignette.color.Override(currColorPalette.BgVignetteColor);
@@ -156,16 +159,15 @@ public class HelixController : MonoBehaviour
         endRing.SetupAsEndRing(currColorPalette.GoalSectionColor);
     }
 
-    private ColorPalette GetRandomColorPalette()
+    private int GetRandomColorPaletteIndex()
     {
-        return levelData.ColorPalettes[Random.Range(0, levelData.ColorPalettes.Count)];
+        return Random.Range(0, levelData.ColorPalettes.Count);
     }
     
+    // Need to reload the level to test different color palettes during runtime by changing the value of currColorPaletteIndex in-editor
     [ContextMenu("Set Color Palette")]
     private void SetColorPalette()
     {
-        currColorPalette = levelData.ColorPalettes[colorPaletteIndex];
-        
         LoadLevel(currLevel);
     }
 }

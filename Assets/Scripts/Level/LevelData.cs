@@ -13,26 +13,18 @@ public class LevelData : ScriptableObject
 public class Level
 {
     public List<RingData> rings = new List<RingData>();
-    
-    // public Color BgColor = Color.white;
-    // public Color BgVignetteColor = Color.white;
-    // public Color BallColor = Color.white;
-    // public Color PillarColor = Color.white;
-    // public Color NormalSectionColor = Color.white;
-    // public Color DangerSectionColor = Color.white;
-    // public Color GoalSectionColor = Color.white;
 }
 
 [Serializable]
-public class ColorPalette
+public struct ColorPalette
 {
-    public Color BgColor = Color.white;
-    public Color BgVignetteColor = Color.white;
-    public Color BallColor = Color.white;
-    public Color PillarColor = Color.white;
-    public Color NormalSectionColor = Color.white;
-    public Color DangerSectionColor = Color.white;
-    public Color GoalSectionColor = Color.white;
+    public Color BgColor;
+    public Color BgVignetteColor;
+    public Color BallColor;
+    public Color PillarColor;
+    public Color NormalSectionColor;
+    public Color DangerSectionColor;
+    public Color GoalSectionColor;
 }
 
 [Serializable]
