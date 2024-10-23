@@ -14,8 +14,11 @@ A 3D helix jump game made using Unity game engine
   <img src="README-Resources/GamePlay2.png" alt="Gameplay" height="300px">
   <img src="README-Resources/GameOver.png" alt="Gameplay" height="300px">
 </div>
+
+<br>
+
 <div align="center">
-  <a href="https://youtu.be/3hF2YWFaSlg" target="_blank">See Demo Video</a>
+  <a href="https://youtu.be/3hF2YWFaSlg" target="_blank">Demo Video</a>
 </div>
 
 
